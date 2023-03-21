@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const fruits = require('../models/Fruits');
+// console.log(fruits);
 
 router.get('/fruits', (req, res) => {
     res.render('fruits/index.ejs', {fruits: fruits})
