@@ -19,4 +19,15 @@ router.get('/fruits/:id', (req, res) => {
     res.render("fruits/show.ejs", {fruit: fruit});
 })
 
+router.post('/fruits', (req, res) => {
+    // console.log(req.body);
+    let newFruit = req.body;
+    if(newFruit.readyToEat === "true") newFruit.readyToEat = true;
+    else newFruit.readyToEat = false;
+    fruits.push(newFruit);
+    // Fruits.create(newFruit);
+    console.log(fruits);
+    res.redirect('/fruits');
+})
+
 module.exports = router;

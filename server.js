@@ -17,6 +17,10 @@ const starWarsShipsController = require('./controllers/starwars-ships');
 // This is a view engine that is looking for EJS files to be rendered. It also sets up that ALL the EJS files for my frontend will be located in a file named views
 app.set('view engine', 'ejs');
 
+//near the top, around other app.use() calls
+// This makes it so that any post from a form will be available in the req.body as an object with the keys of whatever the name is in the form itself
+app.use(express.urlencoded({ extended:false }));
+
 
 // Routes
 // Hungry for more to create my own API, and APIs always should be in JSON

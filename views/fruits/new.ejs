@@ -1,5 +1,6 @@
 <%- include('../header.ejs', {name: "Create a new fruit"}) %>
-    <form method="POST" action="/postRoute">
+    <h1>Create your new fruit below</h1>
+    <form method="POST" action="/fruits">
         <label for="name">Name:</label>
         <input type="text" name="name" id="name">
         <br>
@@ -11,6 +12,8 @@
         <br>
         <label for="image">Image URL: </label>
         <input type="text" name="image" id="image">
+        <br>
+        <input type="submit" value="Add a fruit">
     </form>
 </body>
 </html>
