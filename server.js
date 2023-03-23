@@ -1,7 +1,8 @@
 // These are just setting up an instance of express. Literally directly from Express' documentation. 
 const express = require('express');
 const app = express();
-const port = 4000
+const port = 4000;
+const methodOverride = require('method-override');
 const fruitsController = require('./controllers/fruits');
 const starWarsShipsController = require('./controllers/starwars-ships');
 // console.log(fruitsController)
@@ -21,6 +22,9 @@ app.set('view engine', 'ejs');
 // This makes it so that any post from a form will be available in the req.body as an object with the keys of whatever the name is in the form itself
 app.use(express.urlencoded({ extended:false }));
 
+// I need method override to allow forms to both edit and delete. By default, forms only can make get and post requests.
+app.use(methodOverride('_method'))
+
 
 // Routes
 // Hungry for more to create my own API, and APIs always should be in JSON
@@ -35,7 +39,7 @@ app.get('/', (req, res) => {
     res.render('home.ejs');
 })
 
-app.use('', fruitsController);
+app.use('/fruits', fruitsController);
 app.use('', starWarsShipsController);
 
 app.get('/*', (req, res) => {
