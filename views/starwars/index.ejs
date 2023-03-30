@@ -1,4 +1,7 @@
-<%- include('../header.ejs') %>
+<%- include('../header.ejs', {name: 'Star wars ships index'}) %>
     <h1>This is a list of my star wars ships</h1>
+    <% for(let i = 0; i < starWarsShips.length; i++) { %>
+        <h2>Name: <%= starWarsShips[i].name %> </h2>
+    <% } %>
 </body>
 </html>

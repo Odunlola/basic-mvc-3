@@ -1,15 +1,15 @@
 // These are just setting up an instance of express. Literally directly from Express' documentation. 
 const express = require('express');
 const app = express();
-const port = 4000
+const port = 4000;
+const methodOverride = require('method-override');
 const fruitsController = require('./controllers/fruits');
+const starWarsShipsController = require('./controllers/starwars-ships');
 // console.log(fruitsController)
 
 // This is going to the Fruits.js file in the models directory. It is set equal to the export from that file
-const models = require('./models/Fruits');
 // console.log(models);
 // This is getting just the array of fruits. Not the whole object that has two key/value pairs.
-const fruits = models.fruits
 // Models - Database stuff
 // controllers - routes
 // views - EJS files (EJS is literally just HTML and JS)
@@ -17,6 +17,13 @@ const fruits = models.fruits
 // Middleware 
 // This is a view engine that is looking for EJS files to be rendered. It also sets up that ALL the EJS files for my frontend will be located in a file named views
 app.set('view engine', 'ejs');
+
+//near the top, around other app.use() calls
+// This makes it so that any post from a form will be available in the req.body as an object with the keys of whatever the name is in the form itself
+app.use(express.urlencoded({ extended:false }));
+
+// I need method override to allow forms to both edit and delete. By default, forms only can make get and post requests.
+app.use(methodOverride('_method'))
 
 
 // Routes
@@ -32,12 +39,8 @@ app.get('/', (req, res) => {
     res.render('home.ejs');
 })
 
-// This is just my index route. I want this to be where I have a list of all my data. For example, all my products or fruits or star wars ships
-app.get('/starwars', (req, res) => {
-    res.render('starwars/index.ejs')
-})
-
-app.use('', fruitsController);
+app.use('/fruits', fruitsController);
+app.use('', starWarsShipsController);
 
 app.get('/*', (req, res) => {
     res.render("404.ejs")

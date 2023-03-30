@@ -19,17 +19,4 @@ fruits = [
     }
 ];
 
-starWarsShips = [
-    {
-        name: "Death Star",
-        destroyed: true
-    }, {
-        name: "Millenium Falcon",
-        destroyed: false
-    }
-]
-
-module.exports = {
-    fruits: fruits,
-    starWarsShips: starWarsShips
-}
+module.exports = fruits;
